@@ -1,0 +1,15 @@
+1. Be in the garden before.
+2. Fancy an ice cream.
+3. Look in your pocket if there is money.
+4. If there is money, go to the ice cream shop otherwise enter the house for money.
+5. Go to the ice cream parlor.
+6. Get to the ice cream shop.
+7. Greet and ask what type of ice cream they sell.
+8. Choose the type of ice cream.
+9. Ask for the flavors.
+10. Choose a flavor.
+11. Ask the price.
+12. Take money out of pocket.
+13. Receive the ice cream.
+14. Pay the person who attends us.
+15. Enjoy the ice cream.

@@ -1,0 +1,410 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Calculadora Jquery</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+
+<script type="text/javascript">
+
+
+      
+    $(function(){
+     
+      var horario;
+        if (new Date().getHours()<=7){horario="as noches"}
+        else if (new Date().getHours()<=12){horario="os días"}
+        else if (new Date().getHours()<=20){horario="as tardes"}
+        else {horario="as noches"}  
+      
+      var autor="Yerson Andrés Ramírez García";    
+      
+      $("#saludo").text("Buen" + horario + ", bienvenid@ a la calculadora de "+ autor);
+      }) 
+
+$(document).ready(function() {
+
+    $('.num').click(function(){
+		var n = $(this).val();
+		$('#visor').val($('#visor').val() + n);	
+	});
+
+	$('#borra').click(function(){
+		$('#visor').val('');
+		$('#operacion').val('');
+		$('#operacion').removeClass('activo');
+		$('#resultado').attr('onclick','');
+	});
+
+	$('#cuadrado').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();
+			var r = Math.pow(n,2);
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+    $('#inverso').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();			
+			var r = 1/n;
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+    $('#raiz2').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();
+			var r = Math.sqrt(n).toFixed(4);
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+    $('#entero').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();
+			if (n>=0){
+				var r = Math.floor(n);
+			}
+			else{
+				var r = -Math.ceil(n);
+			}
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+    $('#potencia').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();
+			var r = Math.pow(2,n);
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+    $('#factorial').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var n = $('#visor').val();
+
+			var i = 1, acc = n;
+			while ( n > i) {
+				n--;
+				var acc = acc  * n;
+		  	}
+
+			$('#visor').val(acc);
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false')			
+			
+		}
+    });
+
+
+	$('#mas').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else if ( $('#operacion').attr('class') == 'activo') {
+			$('#operacion').val( $('#operacion').val() + $('#mas').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			$('#operacion').val( $('#operacion').val() + $('#visor').val() + $('#mas').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+    });
+
+	$('#menos').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;	
+			$('#resultado').attr('onclick','');
+		}
+		else if ( $('#operacion').attr('class') == 'activo') {
+			$('#operacion').val( $('#operacion').val() + $('#menos').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			$('#operacion').val( $('#operacion').val() + $('#visor').val() + $('#menos').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+    });
+	$('#entre').click(function() { 
+	
+		if($('#visor').val() == ''){
+			return false;	
+			$('#resultado').attr('onclick','');
+		}
+		else if ( $('#operacion').attr('class') == 'activo') {
+			$('#operacion').val( $('#operacion').val() + $('#entre').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			$('#operacion').val( $('#operacion').val() + $('#visor').val() + $('#entre').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+    });
+
+	$('#por').click(function() { 
+	
+		if($('#visor').val() == ''){
+			return false;	
+			$('#resultado').attr('onclick','');
+		}
+		else if ( $('#operacion').attr('class') == 'activo') {
+			$('#operacion').val( $('#operacion').val() + $('#por').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			$('#operacion').val( $('#operacion').val() + $('#visor').val() + $('#por').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+		}
+    });	
+
+    $('#elevado').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;	
+			$('#resultado').attr('onclick','');
+		}
+		else if ( $('#operacion').attr('class') == 'activo') {
+			$('#operacion').val( $('#operacion').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+			
+		}
+		else{
+			$('#operacion').val( $('#operacion').val() + $('#visor').val() );
+			$('#visor').val('');
+			$('#resultado').attr('onclick','');
+			
+		}
+
+    });	
+
+	$('#resultado').click(function(){
+		
+		if($('#resultado').attr('onclick') != 'return false'){
+
+			var n = $('#visor').val();
+			var o = $('#operacion').val();
+			if ($('#operacion').val() >=0){
+				var r= Math.pow(o,n);
+			}
+			else{
+				var r = o.concat(n);
+			}
+			
+			$('#visor').val(eval(r));
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+	});
+
+	$('#sum').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+
+			var lista= $('#visor').val().split(",");
+			var i = 0, acc = 0;
+			while ( i < lista.length ) {
+		    	var acc = acc + (+lista[i]);
+		    	i++;
+		  	}
+
+			$('#visor').val(acc);
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+	 $('#pro').click(function() { 	
+		if($('#visor').val() == ''){
+			return false;
+			$('#resultado').attr('onclick','');
+		}
+		else{
+			var lista= $('#visor').val().split(",");
+			var i = 0, acc = 1;
+			while ( i < lista.length ) {
+		    	var acc = acc * (+lista[i]);
+		    	i++;
+		 	}
+
+			$('#visor').val(acc);
+			$('#operacion').val('');
+			$('#resultado').attr('onclick','return false');
+		}
+    });
+
+});
+</script>
+<style>
+form,input,button { 
+	margin:0px;
+}
+section{
+	display: inline-block;
+}
+section input[type="button"] {
+	float: left;
+	min-width: 4.2em;
+	width: auto;
+}
+#saludo {
+    border: medium outset maroon;
+    width: 90%;
+    margin: 0.5em auto;
+    color: black;
+    text-align: center;
+    background: pink;
+   
+    width: 27em;
+    padding: 1em;
+}
+#calc{
+	width: 13.2em;
+	border: inset;
+	padding: 1em;
+	border-radius: 10px;
+	box-shadow: inset -11px -6px 50px rgb(240, 233, 90),inset 11px 6px 50px rgb(255, 255, 50);
+	background: blue;
+	top: 6em;
+	right: -1em;
+}
+#enunciado{ width: 60%; padding: 1em; box-shadow: 0 5px 15px;}
+#operacion{
+	width: 98%;
+	height: 1.5em;
+}
+
+#visor{
+	width: 92%;
+	padding: 0 3%;
+	height: 2em;
+	font-size: 1.5em;
+	color: black;
+	text-align: right;
+}
+
+input[type="button"] {
+	font-family: "Courier New" serif;
+	width: 3em;
+	height: 3em;
+	margin: .3em;
+	float: right;
+}
+input[value="C"] {
+	color: white;
+	font-weight: bold;
+	background: red;
+}
+
+input[value="="] {
+	color: white;
+	font-weight: bold;
+	background: green;
+}
+hr{clear: both;}
+
+</style>
+</head>
+
+<body style="background: #3CFBF0 ">
+
+
+<div id="saludo"></div>
+<center><div id="calc">
+    <form action="" id="calculadora">
+    	<input type="text" id="operacion" value="" disabled="disabled" >
+    	<input type="text" id="visor" value="" size="12" autofocus >
+
+     	<input type="button" class="num" value="9" id="9" >
+        <input type="button" class="num" value="8" id="8" >
+        <input type="button" class="num" value="7" id="7" >
+        <input type="button" class="num" value="6" id="6" >
+
+        <input type="button" class="num" value="5" id="5" >
+        <input type="button" class="num" value="4" id="4" >
+        <input type="button" class="num" value="3" id="3" >
+        <input type="button" class="num" value="2" id="2" >
+        
+        <input type="button" class="num" value="." id="decimal" title="Decimal">
+        <input type="button" class="num" value="1" id="1" >
+       	<input type="button" class="num" value="0" id="0" >
+		<input type="button" value="C" id="borra" title="Borrar">
+		<hr>
+		<section id="binarias">
+		<input type="button" value="x^2" id="cuadrado" title="número elevado al cuadrado">
+		<input type="button" value="1/x" id="inverso" title="inverso del número">
+		<input type="button" value="Vx" id="raiz2" title="raiz cuadrada del número">
+		<input type="button" value="Int" id="entero" title="parte entera de x (Siempre Positivo)">
+		<input type="button" value="2^x" id="potencia" title="potencia n del número 2">
+		<input type="button" value="x!" id="factorial" title="factorial del número x">
+		</section>
+
+        <hr> 
+        <section id="unitarias"	>
+      	<input type="button" value="+" id="mas" title="Sumar">
+       	<input type="button" value="-" id="menos" title="Restar">
+        <input type="button" value="*" id="por" title="Multiplicar">   	
+        <input type="button" value="/" id="entre" title="Dividir">
+        <input type="button" value="x^y" id="elevado" title="x elevado a y">
+        <input type="button" value="=" id="resultado" title="Calcular">
+     	</section>
+
+        <hr>
+        <section id="csv">
+        <input type="button" value="sum(x)" id="sum" title="sumatorio de n números">
+        <input type="button" value="pro(x)" id="pro" title="producto de n números">
+        <input type="button" value="," class="num" id="coma" title="separador de valores" style="min-width:3em;">
+    	</section>
+    </form>
+</div></center>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Citas con Base de Datos</title> 
+  <link rel="stylesheet" type="text/css" href="css/citas_slide.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script type="text/javascript" src="javascript/jquery-2.1.4.min.js" ></script>
+  <script type="text/javascript" src="javascript/galeria.js" ></script>
+  <script type="text/javascript" src="javascript/zepto.min.js" ></script>
+
+  <script>
+    var t, actual;
+    
+    localStorage.galeriaLocal = localStorage.galeriaLocal || '[]';  
+    var galeriaLocal     = JSON.parse(localStorage.galeriaLocal); 
+
+    function select(i){
+    actual = i;
+
+    $("nav a")
+      .removeClass("on off")
+      .addClass(function(j){return(j===i)?"on":"off";});
+  
+    $("#persona").html(galeria[i].persona);
+    $("#frase").html(galeria[i].frase);
+    $("#foto").attr("src", galeria[i].foto);
+  
+    clearTimeout(t);
+    t = setTimeout( function(){select((i + 1) % galeria.length);}, 9000);
+    }
+
+    function generar_selector(){ // regenera la botonera
+      var selector = $("#selector");
+    
+      selector.html("");
+      
+      galeria.forEach(function(elem,i) {
+        selector.append("<li><a onClick='select("+i+")'></a></li>");
+      });
+    }
+  
+    
+    $(function (){
+      var visitas = $("#visitas");
+      localStorage.visitas = localStorage.visitas || 0;              
+      localStorage.setItem("visitas", parseInt(localStorage.getItem("visitas") || 0 ) + 1);
+      visitas.html(localStorage.visitas);
+      
+      if (galeriaLocal.length > 0)   // Si EXISTEN en variables Locales se reemplaza la galería
+         { 
+          galeria = galeriaLocal;
+         }
+        generar_selector();
+          
+      $("#editar").on("click", function(){
+        clearTimeout(t);
+        if (galeria.length > 0) 
+          {
+            $("#persona_d").html(galeria[actual].persona);
+            $("#frase_d").html(galeria[actual].frase);
+            $("#foto_d").html(galeria[actual].foto);
+          }
+        //$("#datos").css("display", "block");
+         $('#datos').toggle();        
+        $('#ayuda').toggle();
+      })
+
+
+    $("#nuevo").on("click", function(){
+      $("#datos").css("display", "none");
+  
+      actual = galeria.push({
+         persona:$("#persona_d").html(),
+         frase:$("#frase_d").html(),
+         foto:$("#foto_d").html()
+      }) - 1;
+  
+      generar_selector();
+  
+      select(actual);
+      $('#ayuda').toggle();
+    })
+    
+       
+    
+    // Eliminar
+    $("#borrar").on("click", function(){
+      $("#datos").css("display", "none");
+  
+      galeria.splice(actual, 1);
+      generar_selector();
+      if (galeria.length > 0) {
+        select(0);
+        $("#borrar").attr("title","Eliminar esta Cita... ");
+      }
+      else if (galeria.length === 0){
+        $("#persona").html("");
+        $("#frase").html("");
+        $("#foto").attr("src","");
+        $("#borrar").attr("title","No Hay Citas...");
+      }
+      $('#ayuda').toggle();
+    })
+    
+    // Actualizar
+    $("#guardar").on("click", function(){
+      $("#datos").css("display", "none");
+
+      galeria[actual].persona = $("#persona_d").html();
+      galeria[actual].frase = $("#frase_d").html();
+      galeria[actual].foto = $("#foto_d").html();      
+      generar_selector();
+      select(0);
+      $('#ayuda').toggle();
+      })
+
+
+    // Guardar la Base de Datos Serializada con JSON
+      $("#Guardarbd").on("click", function(){
+        $("#datos").css("display", "none");
+    
+        var respuesta = confirm("¿Guardar las Citas Actuales en tu Base de Datos Local?")
+        if (respuesta===true) 
+           {
+             localStorage.removeItem("galeriaLocal");
+             localStorage.galeriaLocal = localStorage.galeriaLocal || '[]'; 
+             galeriaLocal   = JSON.parse(localStorage.galeriaLocal);     
+    
+             for (j=0; j < galeria.length;  j++)
+             {
+                 galeriaLocal.push (galeria[j]);
+             }
+             localStorage.galeriaLocal = JSON.stringify(galeriaLocal);
+             alert("Citas Guardadas en tu Base de Datos Local. (Cuando actualices o abras de nuevo tu navegador podrás verlas.)");
+             select(0);
+           }
+        $('#ayuda').toggle();
+    })
+
+    // Regenerar las Citas Originales
+      $("#RegCitas").on("click", function(){
+        $("#datos").css("display", "none");
+        $('#ayuda').css("display", "block");
+            var respuesta = confirm("¿Eliminar tu Base de Datos Local y  Regenerar Citas con los Contenidos Iniciales ? ")
+            if (respuesta === true) 
+              {
+               localStorage.removeItem("galeriaLocal");
+               galeria = fnClone(galeriaInicial);
+               generar_selector();
+               select(0);
+               alert("Has eliminado tu Base de Datos Local de Citas. Se han Restaurado las Citas Originales.");              
+             }
+        galeria=galeriaLocal;
+    })
+
+
+    select(0);
+    });
+    
+  </script>
+  
+  <style>
+  #encabezado{    
+    background: rgba(241,231,103,0.66);
+    background: -moz-linear-gradient(left, rgba(241,231,103,0.66) 0%, rgba(250,198,80,0.66) 41%, rgba(254,182,69,0.78) 61%, rgba(254,182,69,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(241,231,103,0.66)), color-stop(41%, rgba(250,198,80,0.66)), color-stop(61%, rgba(254,182,69,0.78)), color-stop(100%, rgba(254,182,69,1)));
+    background: -webkit-linear-gradient(left, rgba(241,231,103,0.66) 0%, rgba(250,198,80,0.66) 41%, rgba(254,182,69,0.78) 61%, rgba(254,182,69,1) 100%);
+    background: -o-linear-gradient(left, rgba(241,231,103,0.66) 0%, rgba(250,198,80,0.66) 41%, rgba(254,182,69,0.78) 61%, rgba(254,182,69,1) 100%);
+    background: -ms-linear-gradient(left, rgba(241,231,103,0.66) 0%, rgba(250,198,80,0.66) 41%, rgba(254,182,69,0.78) 61%, rgba(254,182,69,1) 100%);
+    background: linear-gradient(to right, rgba(241,231,103,0.66) 0%, rgba(250,198,80,0.66) 41%, rgba(254,182,69,0.78) 61%, rgba(254,182,69,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
+    padding:1.5em 0;
+  }
+  #encabezado h1, h2 {
+    font-family:helvetica;
+    text-align:center;
+    color:rgb(120,120,10);
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);
+    
+  }
+  #enunciado{
+   float:left;
+   width:25%;
+   padding: 1em;
+   color: rgb(120,120,20);
+   font-family: Arial;
+   text-align: justify;
+   background: rgba(241,231,103,0.66);
+   box-shadow: -5px 0px 15px rgb(120, 120, 10) inset;
+  }
+  #ayuda{
+    margin-top:1em;
+    display: block;
+  }
+  #ayuda img{
+    background:gray;
+    border-radius: 50%;
+    padding: 0.2em;
+  }
+  </style>
+</head>
+
+  <body style="min-width:854px;">
+    <div id="encabezado">
+      <h1>Módulo 8: LocalStorage, iFrames, Origin policy y JSON</h1>
+      <h2>Entrega P2P obligatoria</h2>
+    </div>
+    
+    <div id="enunciado">
+    <p>Añadir a la aplicación, con el el carrusel de citas editable, la funcionalidad de guardar la base de datos serializada en JSON en localStorage, de forma que al cargar la aplicación en un navegador, está deberá detectar si existe una base de datos de citas almacenada en localStorage y si es así deberá presentar está en vez de las citas de la galería incluidas en el código de la aplicación.</p>
+  <p>De esta forma los cambios realizados a la base de datos inicial de citas (edición, añadir o borrado)   quedarán guardados en localStorage y estarán disponibles cuando se vuelva a abrir la aplicación en ese mismo navegador.</p>
+  <p>Añadir además un botón que regenere las citas iniciales de la aplicación, eliminando los cambios introducidos. El botón debe pedir confirmación (con la funcion confirm("msj") o con un componente/widget dialogo de jQuery UI) y avisar en el mensaje ("msj") del pop-up de lo que va a hacer, para que el usuario sea consciente de que borra todos los cambios.</p>
+  <p>Este nuevo botón deberá colocarse en una posición que se relacione con la base de datos de citas y no con una cita en particular. Buscar un icono SVG adecuado en Internet.</p>
+    </div>
+        
+    <div class="contenido" style="width:72%; float:right;">
+      <nav> 
+        <ul id="selector"></ul>
+      </nav>
+      <section id="caja">
+        <img id="foto" alt="" />
+        <div class="textos">
+          <p id="frase"></p>
+          <p id="persona"></p>
+        </div>
+      </section>
+      <div class="editar" id="editar"> 
+        <img src="images/carat-d-white.svg" alt="" title="Mostrar/Ocultar"/>
+      </div>
+      <section id="datos">
+        <div contentEditable="true" id="persona_d"></div>
+        <div contentEditable="true" id="frase_d"></div>
+        <div contentEditable="true" id="foto_d"></div>
+        <div id="botones">
+          <ul>
+            <li><img src="images/edit-black.svg" alt="" title="Guardar..." id="guardar"/></li>
+            <li><img src="images/plus-black.svg" alt="" title="Añadir..." id="nuevo"/></li>
+            <li><img src="images/delete-black.svg" alt="" title="Eliminar..." id="borrar"/></li>
+            <li>- . -</li>
+            <li><img src="images/bd2.svg" alt="" title="Guardar Base de Datos Local..." id="Guardarbd"/></li>
+            <li><img src="images/bd1.svg" alt="" title="Eliminar Base de Datos Local..." id="RegCitas"/></li>
+          </ul>
+        </div>
+      </section>
+      <div id="ayuda">
+      <ol>
+        <li>Haz clic en Mostrar/Ocultar <img src="images/carat-d-white.svg" alt="" title="Mostrar/Ocultar" ></img>. Se mostrará el autor, la frase y la url de la imagen  de la cita actual.</li>
+        <li>Pulsa el botón Añadir <img src="images/plus-black.svg" alt="" title="Añadir..." id="nuevo"></img> y se efectuará una copia de la cita actual como último elemento del carrousel.</li>
+        <li>Selecciona el último elemento del carrousel y vuelve a desplegar los contenidos con el botón Mostrar/ocultar.</li>
+        <li>Modifica el contenido de los cuadros de texto con los datos que te interesen.</li>
+        <li>Pulsa el botón Guardar <img src="images/edit-black.svg" alt="" title="Guardar..." id="guardar"></img> y se actualizará el elemento con los datos introducidos.</li>
+        <li>Para eliminar un elemento, selecciónalo en el carrousel, pulsa el botón Mostrar/Ocultar y haz clic en el botón Eliminar <img src="images/delete-black.svg" alt="" title="Eliminar..." id="borrar"></img>.</li>
+        <li>Para Guardar en tu Base de Datos Local las citas actuales, haz clic en el botón Guardar Base de Datos Local <img src="images/bd2.svg" alt="" title="Guardar Base de Datos Local..." id="Guardarbd" width="20px"></img>.</li>
+        <li>Para Restaurar las Citas originales, haz clic en el botón Eliminar Base de Datos Local <img src="images/bd1.svg" alt="" title="Eliminar Base de Datos Local..." id="RegCitas" width="20px">.</li>
+       </ol>
+       <ul>
+       <li>Pulsa la tecla <b>F5</b> para Recargar la página. Se actualizará el contador de visitas y se cargará tu Base de datos local con las citas que tienes guardadas, o las citas Originales si has Eliminado tu Base de datos Local.</li>
+       </ul>
+      </div> 
+       <div id="contador" style="clear:both; text-align:center;background:black; color:white;padding:.7em;">
+      <h3>Esta es tu <span id="visitas" style="color:blue;"> </span>&ordf; visita a esta página.</h3>
+    </div>   
+    </div>
+       
+  </body>
+</html>

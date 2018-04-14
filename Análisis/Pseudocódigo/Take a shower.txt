@@ -1,0 +1,30 @@
+Enter the piece.
+2.	 Look for the uniform in the closet.
+3.	Look for underwear.
+4.	Find the towel.
+5.	 Put on flip flops.
+6.	Take the towel and underwear.
+7.	Go to the bathroom.
+8.	Open the bathroom door.
+9.	Close the bathroom door.
+10.	1Hang the towel and underwear on the pondado.
+11.	Denudarse.
+12.	Place dirty laundry on one side or container.
+13.	Close the shower door.
+14.	Open the key.
+15.	Wet well from head to toe.
+16.	Close the key.
+17.	Take the shampoo and uncover it.
+18.	Put a little shampoo in your hand and close the jar.
+19.	Smear and shake your head with the shampoo.
+20.	Take the soap.
+21.	Stir the whole body with soap.
+22.	Place the shampoo and soap in its corresponding place.
+23.	Open the key.
+24.	Wash your head and body well.
+25.	Close the key.
+26.	Take the towel and dry.
+27.	Take the underwear and put it on.
+28.	Open the shower door.
+29.	Open the bathroom door.
+30.	Go to the room.

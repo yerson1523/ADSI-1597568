@@ -1,0 +1,44 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Muestra fecha y hora</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1 id="h1"></h1>
+   <p id="nombre" style="background:green;"></p> <!-- 1) El nombre de la persona que hace la entrega debajo del titulo <h1> -->
+   <h2 id="h2">La fecha y la hora son:</h2>
+   <div id="fecha"></div>
+   <div id="datos" style="background:green"></div> <!-- 2) Un bloque <div> debajo de la fecha y la hora y las instrucciones JavaScript necesarias para que muestre en dicho bloque el contenido de las siguientes propiedades DOM en líneas separadas, que comiencen por el nombre de la propiedad(es) mostrada(s): -->
+
+ <script type="text/javascript">
+   var fecha = new Date();
+   var msj;
+   var autor = "Yerson Andrés Ramírez García";
+   var contenido;
+   
+   if (fecha.getHours() < 7) { msj = "Buenas noches";}
+   else if (fecha.getHours() < 12) { msj = "Buenos días";}
+   else if (fecha.getHours() < 21) { msj = "Buenas tardes";}
+   else { msj = "Buenas noches";}
+
+   document.getElementById("h1").innerHTML = msj;
+   document.getElementById("fecha").innerHTML = fecha;
+   document.getElementById("nombre").innerHTML = autor;
+
+   document.getElementById("datos").innerHTML= ("<br> a)---- innerHTML del id=\"h2\" =====> <span>"+ document.getElementById("h2").innerHTML + "</span> Contenido entre las marcas h2");
+   contenido = document.getElementById("datos").innerHTML;
+   document.getElementById("datos").innerHTML= (contenido +"<br> b)---- outerHTML del id=\"h1\" =====> <span>"+ document.getElementById("h1").outerHTML + "</span> Contenido incluidas las marcas h1");
+   contenido = document.getElementById("datos").innerHTML;
+   document.getElementById("datos").innerHTML= (contenido +"<br> c)---- location.href =====> <span>" + location.href + "</span> ubicación del archivo. Representa toda la información de la URL del navegador. ");
+   contenido = document.getElementById("datos").innerHTML; 
+   document.getElementById("datos").innerHTML= (contenido +"<br> d)---- location  =========> <span>" + location +"</span> ubicación del archivo. Objeto que contiene la información sobre la URL que tenemos cargada en el navegador. ");
+   contenido = document.getElementById("datos").innerHTML;
+   document.getElementById("datos").innerHTML= (contenido +"<br>e1)---- screen.width  =====> <span>" + screen.width + "</span> px de ancho de la pantalla.");   
+   contenido = document.getElementById("datos").innerHTML;
+   document.getElementById("datos").innerHTML= (contenido +"<br>e2)---- screen.height  =====> <span>" + screen.height + "</span> px de alto de la pantalla.");
+
+</script>
+
+
+</body>
+</html>

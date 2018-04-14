@@ -1,0 +1,30 @@
+1.	Estar observando tv sentado en el comedor.
+2.	Sentir hambre y pensar en fritar un huevo.
+3.	Pararse de la silla y dirigirse a la cocina.
+4.	Buscar el sart�n.
+5.	Buscar el aceite.
+6.	Buscar el huevo.
+7.	Buscar la sal.
+8.	Buscar una cuchara.
+9.	Encontrados los elementos anteriores, colocarlos encima del poyo.
+10.	Tomar la candela o fosforo.
+11.	Abrir la llave del gas.
+12.	Abrir la perilla del fog�n y encenderlo.
+13.	Colocar el sart�n en el fuego.
+14.	Destapar el frasco del aceite.
+15.	Tomar la cuchara y vaciar un poco de aceite en ella.
+16.	Echar el aceite en el sart�n.
+17.	Abrir el tarro de la sal.
+18.	Tomar la cuchara y sacar sal al gusto en ella.
+19.	Echar la sal en el sart�n.
+20.	Colocar la cuchara en el poyo.
+21.	Tomar el huevo y golpearlo contra la estufa o una superficie s�lida para romperlo.
+22.	Separar el cascar�n y echar el huevo en el sart�n.
+23.	Colocar las cascaras en el poyo.
+24.	Tomar la cuchara y revolver el huevo.
+25.	Una ves listo el huevo, apagar el fog�n.
+26.	Cerrar la llave del gas.
+27.	Buscar un plato.
+28.	Tomar el sart�n y con la cuchara vaciar el huevo en el plato.
+29.	Cerrar el tarro de sal y aceite.
+30.	Disfrutar del huevo.

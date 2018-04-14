@@ -1,0 +1,14 @@
+1.	Despertarse al sentir ganas de ir al baño.
+2.	Levantarse de la cama.
+3.	Buscar el switch de la energía.
+4.	Encender el bombillo.
+5.	Buscar las chanclas.
+6.	Colocarse las chanclas.
+7.	Dirigirse hacia la puerta de la habitación.
+8.	Abrir la puerta.
+9.	Caminar hacia el baño.
+10.	Abrir la puerta del baño.
+11.	Buscar el switch de la energía.
+12.	Encender el bombillo.
+13.	Cerrar la puerta del baño.
+14.	Hacer su necesidad.

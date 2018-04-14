@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<title>Calculadora</title>
+
+		<meta charset="utf-8">
+
+
+
+		<script type="text/javascript">
+
+  			var num, acc = 0, op = "";
+
+			function mas() {
+				acc = num.value;
+				op = "+";
+ 			}
+
+			function menos() {
+				acc = num.value;
+				op = "-";
+			}
+
+
+
+function cuadrado(){
+	acc=num.value;
+	num.value=(Math.pow(acc,2));
+}
+function inverso(){
+	acc=num.value;
+	num.value=(1/acc).toPrecision(4);
+}
+function raiz(){
+	acc=num.value;
+	num.value=(Math.sqrt(acc).toFixed(4));
+}
+function entero(){
+	acc=num.value;
+	if (acc >= 0){
+		num.value = (Math.floor(acc));	
+	}
+	if (acc < 0){
+		num.value=(Math.ceil(acc));
+	}
+}
+
+function por(){
+	acc=num.value;
+	op = "*";
+}
+function entre(){
+	acc=num.value;
+	op="/";
+}
+function potencia(){
+	acc=num.value;
+	op = "^";
+}
+
+
+			function calcular() {
+
+
+				if (op === "+")	{
+					num.value = (+acc + +num.value)
+				}
+				if (op === "-") {
+					num.value = (+acc - +num.value)
+				}
+
+if (op === "*"){
+	num.value=(+acc * +num.value)
+}
+if (op === "/"){
+	num.value = (+acc / +num.value)
+}
+if (op === "^"){
+	num.value = (Math.pow(acc,num.value));
+}
+
+			}
+
+
+			function inic () {
+				num = document.getElementById("num");
+				
+				
+			}
+
+			function vaciar () {
+				num.value = "";
+			}
+
+		</script>
+
+<style>
+	body{min-width:550px;}
+	section { background:silver; padding: 2% 10%; margin: auto; margin-bottom: 1%; display:table; height:400px; width: 25%;}
+	section span{color:white; font-size:2em;}
+	section p{position:relative;}
+	section button{height:2em; min-width:4em; font-size:1.5em; position:relative; border-radius:12px;}
+
+</style>
+	</head>
+	
+<center><body onLoad="inic()" style="background: #0AE735">
+
+
+		<h2 id="saludo" title="Texto de color gris variable en función de la hora!!"></h2>
+		<p id="hora"></p>
+		
+
+
+		<section title="Escriba un número en el cuadro de texto, pulse el botón deseado de esta sección y se mostrará el resultado." style="margin-top:-1em;">
+		<center><span style="background: black ">Operaciones Unitarias y Binarias:</span><br></center>
+		<p>Resultado:
+			<input type="text" title="Escribe un valor..."size="34" id="num" onClick="vaciar()">
+			<br>
+			<br>
+			<button title="Suma" onClick="mas()">+</button>
+			<button title="Resta" onClick="menos()">-</button>
+			<button title="Multiplicación" onClick="por()">*</button>
+			<button title="División" onClick="entre()">/</button>
+		<button title="Número elevado al cuadrado" onClick="cuadrado()" style="bottom:-2px;">x<sup>2</sup></button>
+		<button title="inverso del número" onClick="inverso()" style="bottom:2px;">1/<sub>x</sub></button>
+		<button title="raiz cuadrada del número" onClick="raiz()">sqrt(x)</button>
+		<button title="parte entera de x." onClick="entero()">int(x)</button>	
+		<button title="x elevado a y" onClick="potencia()" style="bottom:-2px;">x<sup>y</sup></button>
+
+		<center><button title="Realizar el cálculo" onClick="calcular()">Resultado</button></center>
+		</p>
+		</section>
+		
+		<script type="text/javascript">
+		var fecha = new Date();
+		var hor;
+		if (fecha.getHours() < 7) { hor = "Buenas noches";}
+   		else if (fecha.getHours() < 12) { hor = "Buenos días";}
+   		else if (fecha.getHours() < 21) { hor = "Buenas tardes";}
+   		else { hor = "Buenas noches";}
+
+		var msj= "<span style='color:black;'>" +hor+"</span>, Calculadora Miriadax, Presentada por: Yerson Andrés Ramírez García."
+		
+		document.getElementById("saludo").innerHTML= msj; 
+		document.getElementById("hora").innerHTML= "Hora de entrada: <span style='color:black; font-size:1.5em;'>"+fecha.getHours()+":"+fecha.getMinutes()+"</span>";
+		</script>
+	</body><center>
+
+</html>
