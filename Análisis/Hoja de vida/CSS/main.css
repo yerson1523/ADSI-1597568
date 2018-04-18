@@ -1,0 +1,37 @@
+body{
+	background: #ABF97B;
+	font-size: 22px;
+	font-family: 'Oswald', sans-serif;	text-align: center;
+
+}
+
+  div{
+ 	color: black;
+ 	background: #35ECDC;
+ 	border-color: black;
+border-style: solid;
+flex-direction: column;
+ }
+
+
+ .photo
+{
+	
+	background: transparent;
+}
+ul li{
+	list-style: none;
+
+}
+	
+strong{
+	
+font-family: 'Courgette', cursive;
+}
+
+@media (max-width: 767.98px) {
+	body {
+		display: flex;
+		flex-direction: column;
+	}
+
