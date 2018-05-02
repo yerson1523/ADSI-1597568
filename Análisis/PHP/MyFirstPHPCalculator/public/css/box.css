@@ -1,0 +1,23 @@
+
+
+@media (max-width:797.98px){
+body{
+    display: flex;
+    flex-direction: column;
+   
+}
+.one{
+    width: 300px;
+    background-color: black;
+   
+}
+
+select{
+    background-color:#cccccc ;
+    color:black;
+}
+button{
+    background-color:#cccccc; 
+}
+}
+
