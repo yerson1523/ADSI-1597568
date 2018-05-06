@@ -1,0 +1,34 @@
+.photo{
+    width: 40px;
+    height: 40px;
+}
+.left{
+   height: 40px;
+   position: relative;
+ top: 10px;
+   left: -25px;
+}
+td {
+    color: black;
+    font-style: oblique;
+    font-size: 2rem;
+    font-weight: bold;
+   
+}
+h3{
+    color: black;
+    font-size: 3rem;
+    font-weight: bold;
+    font-style: oblique;
+}
+input{
+    width: 250px;
+}
+body{
+    background-color: lightcyan;
+}
+@media (max-width: 767.98px) {
+	body {
+		display: flex;
+		flex-direction: column;
+	}
